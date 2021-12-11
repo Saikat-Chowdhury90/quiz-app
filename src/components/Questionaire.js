@@ -28,7 +28,7 @@ return(
           <>
          <button
                 key={idx}
-              className={` ${bgColor} ${textColor} p-4  font-semibold rounded shadow w-5/12 mb-4 `}
+              className={` ${bgColor} ${textColor} hover:border-4 hover:border-indigo-500/100 p-4  font-semibold rounded shadow w-5/12 mb-4 `}
               onClick={() => handleAnswer(answer)}>
                   {answer}
           </button>
