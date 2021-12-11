@@ -4,6 +4,8 @@ import React from 'react';
 
 const Questionaire = ({
     showAnswers,
+    submitAnswers,
+    handlesubmitAnswer,
     handleAnswer,
     handleNextQuestion,
     data: {question, correct_answer , answers},
@@ -18,18 +20,20 @@ return(
     </div>
     <div className="flex flex-wrap mt-4 justify-between ">
       {answers.map((answer , idx) => {
-        const bgColor = showAnswers ? answer === correct_answer ? 'bg-green-500'
+        const bgColor = (showAnswers && submitAnswers) ? answer === correct_answer ? 'bg-green-500'
         : 'bg-red-500':'bg-white';
 
-        const textColor = showAnswers ? 'text-white' : 'text-black';
+        const textColor = (showAnswers && submitAnswers) ? 'text-white' : 'text-black';
         return (
+          <>
          <button
                 key={idx}
               className={` ${bgColor} ${textColor} p-4  font-semibold rounded shadow w-5/12 mb-4 `}
-
               onClick={() => handleAnswer(answer)}>
                   {answer}
           </button>
+
+         </>
          );
      })
 
@@ -38,8 +42,15 @@ return(
     
 
     </div>
+    <div className="flex items-center justify-center">
+      <button 
+        onClick={handlesubmitAnswer}
+        className={` bg-black border-2 border-white hover:bg-white hover:text-black hover:border-black text-white p-4  font-semibold rounded  w-5/12 mt-10   `} >
+       OK
+          </button>
+        </div>
         
-    {showAnswers && (
+    {(showAnswers && submitAnswers) && (
          <div className="flex items-center justify-center">
          <button onClick={handleNextQuestion}
          className={` bg-black border-2 border-white hover:bg-white hover:text-black hover:border-black text-white p-4  font-semibold rounded  w-5/12 mt-10   `} >
@@ -47,8 +58,12 @@ return(
          </button>
          </div>
      )
+        
      
      }
+
+        
+        
       
     
 </div>
